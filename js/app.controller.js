@@ -13,25 +13,33 @@ function onInit() {
             console.log('Map is ready')
         })
         .catch(() => console.log('Error: cannot init map'))
-        renderLocationsTable()
 }
 
-function renderLocationsTable() {
-    let strHTML = `  <table>
-    <tr>
+function renderLocationsTable(locs) {
+    let strHTML = `<table><tr>
         <th>Name</th>
         <th>Lat</th>
         <th>Lng</th>
-    </tr>
-    <tr>
-        <td>  
+
+    </tr>`
+     strHTML += locs.map((loc)=>{
+   return ` <tr>
+        <td>
+        ${loc.name}
         </td>
         <td>
+        ${loc.lat}
         </td>
         <td>
+        ${loc.lng}
         </td>
-    </tr>
-</table>`
+        <td>
+        <button class="btn-go">Go</button>
+        </td>
+    </tr>`
+}).join('')
+strHTML += `</table>`
+
 
     const elLocationTable = document.querySelector('.locations-table')
     elLocationTable.innerHTML = strHTML
@@ -51,18 +59,21 @@ function onAddMarker() {
             console.log('TODO')
         })
 }
-
 function onGetLocs() {
     locService.getLocs()
         .then(locs => {
+            renderLocationsTable(locs)
             console.log('Locations:', locs)
-            document.querySelector('.locs').innerText = JSON.stringify(locs, null, 2)
+            // document.querySelector('.locs').innerText = JSON.stringify(locs, null, 2)
         })
 }
+
+onGetLocs()
 
 function onGetUserPos() {
     getPosition()
         .then(pos => {
+
             console.log('User position is:', pos.coords)
             document.querySelector('.user-pos').innerText =
                 `Latitude: ${pos.coords.latitude} - Longitude: ${pos.coords.longitude}`
