@@ -1,0 +1,7 @@
+.weather-container {
+    background-color: #ECB390;
+    border: 1px solid grey;
+    text-align: center;
+    font-size: 1.25em;
+    font-weight: 600;
+}

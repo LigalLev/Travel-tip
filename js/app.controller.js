@@ -22,7 +22,6 @@ function renderLocationsTable(locs) {
         <th>Name</th>
         <th>Lat</th>
         <th>Lng</th>
-
     </tr>`
     strHTML += locs.map((loc) => {
         return ` <tr>
@@ -36,10 +35,10 @@ function renderLocationsTable(locs) {
         ${loc.lng}
         </td>
         <td>
-        <button class="btn-go" onclick="onGoBtn(  ${loc.lat}, ${loc.lng})">Go</button>
+        <button class="btn btn-go" onclick="onGoBtn( ${loc.lat}, ${loc.lng})">Go</button>
         </td>
         <td>
-        <button class="btn-go" onclick="onGoBtn(  ${loc.lat}, ${loc.lng})">delet</button>
+        <button class="btn btn-go" onclick="onGoBtn(  ${loc.lat}, ${loc.lng})">delet</button>
         </td>
     </tr>`
     }).join('')
