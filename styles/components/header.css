@@ -1,0 +1,17 @@
+.header-container {
+    background-color:#94B49F ;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.my-location {
+   margin-inline-start: 1em; 
+}
+
+.my-location:hover {
+    cursor: pointer;
+}
+
+
+

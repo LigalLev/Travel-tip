@@ -1,24 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TravelTip</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <title>Travely</title>
 </head>
-<body>
-    <h1>TravelTip Starter</h1>
-    <div id="map" style="width: 100%; height: 400px;"></div>
-    <button onclick="onAddMarker()" class="btn-add-marker">Add Marker Speific Location</button>
-    <button onclick="onGetUserPos()" class="btn-user-pos">Get User Position</button>
-    <button onclick="onGetLocs()" class="btn-get-locs">Get Locations</button>
-    <button onclick="onPanTo()"class="btn-pan">Pan Map to Tokyo</button>
 
-    <p>You are at: <span class="user-pos"></span></p>
-    <p>Locations: 
-        <pre class="locs"></pre>
-    </p>
-    
+<body class="main-layout">
+    <header class="header-container">
+        <h1 class="logo">Travely</h1>
+        <section>
+            <input type="search" onchange="onLocationSearch(event)" placeholder="Enter location" name="location">
+            <a href="" class="my-location">My location</a>
+        </section>
+    </header>
+    <section class="actions-container">
+        <p>You are at: <span class="user-pos"></span></p>
+        <button class="btn btn-copy-location" onclick="onCopyLocation()">Copy location</button>
+        <button onclick="onAddMarker()" class=" btn btn-add-marker">Add Marker Speific Location</button>
+        <button onclick="onGetUserPos()" class="btn btn-user-pos">Get User Position</button>
+        <button onclick="onGetLocs()" class="btn btn-get-locs">Get Locations</button>
+        <button onclick="onPanTo()" class="btn btn-pan">Pan Map to Tokyo</button>
+    </section>
+    <main class="content-layot">
+        <aside class="weather-container">Weather today</aside>
+        <div class="map-container" id="map"></div>
+        <table class="location-container" style="background-color: #ECB390;">
+            <thead>
+                <tr>
+                    <td>Location</td>
+                    <td>Actions</td>
+                </tr>
+            </thead>
+            <tbody class="locations-table">
+                <!-- render buttuns dynamicly add classes to buttuns for style-->
+                <td><button class="btn" onclick="onPanMapToPlace()">Go</button></td>
+                <td><button class="btn" onclick="onDeletePlace()">Delete</button></td>
+            </tbody>
+        </table>
+    </main>
+    <footer>
+        <h3>Coffee rights 2023</h3>
+    </footer>
+
+
+
+
+
 
     <script type="module" src="js/app.controller.js"></script>
 </body>
+
 </html>

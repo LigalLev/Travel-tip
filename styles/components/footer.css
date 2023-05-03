@@ -1,0 +1,10 @@
+footer {
+    display: flex;
+    height: 10em;
+    justify-content: center;  
+}
+
+footer h3 {
+    justify-self: center;
+    align-self: center;
+}
