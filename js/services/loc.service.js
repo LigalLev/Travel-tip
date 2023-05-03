@@ -1,3 +1,4 @@
+import { storageService } from './async-storage.service.js'
 export const locService = {
     getLocs
 }
@@ -16,4 +17,23 @@ function getLocs() {
     })
 }
 
+function _creatLocations (){
+    const locs = [
+        _createLocation('Greatplace', 32.047104, 34.832384 ), 
+        _createLocation('Neveragain', 32.047201, 34.832581)
+    ]
+   
+}
 
+function _createLocation (name, lat = null, lng= null, weather= null){
+    return {
+        id: storageService._makeId(), 
+        name,
+        lat,
+        lng,
+        weather, 
+        createdAt: Date.now(), 
+        updatedAt: Date.now()
+    }
+
+}

@@ -17,14 +17,20 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
                 document.querySelector('#map'), {
                 center: { lat, lng },
                 zoom: 15
- 
             })
+            
             console.log('Map!', gMap)
+            gMap.addListener("click", (mapsMouseEvent) => {
+                console.log('mapsMouseEvent:', mapsMouseEvent)
+                mapsMouseEvent.latLng.lat()
+            console.log(mapsMouseEvent.latLng.lat())
+                mapsMouseEvent.latLng.lng()
+              })
         })
 }
 
 function addMarker(loc) {
-    var marker = new google.maps.Marker({
+    var marker = new google.maps.Marker({ ///TO DO: add promise and res, and send it to the controller
         position: loc,
         map: gMap,
         title: 'Hello World!'
@@ -33,7 +39,8 @@ function addMarker(loc) {
 }
 
 function panTo(lat, lng) {
-    var laLatLng = new google.maps.LatLng(lat, lng)
+    var laLatLng = new google.maps.LatLng(lat, lng) // TODO: find the way to get the lat and lang from the object// 
+    
     gMap.panTo(laLatLng)
 }
 

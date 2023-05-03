@@ -13,8 +13,29 @@ function onInit() {
             console.log('Map is ready')
         })
         .catch(() => console.log('Error: cannot init map'))
+        renderLocationsTable()
 }
 
+function renderLocationsTable() {
+    let strHTML = `  <table>
+    <tr>
+        <th>Name</th>
+        <th>Lat</th>
+        <th>Lng</th>
+    </tr>
+    <tr>
+        <td>  
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+    </tr>
+</table>`
+
+    const elLocationTable = document.querySelector('.locations-table')
+    elLocationTable.innerHTML = strHTML
+}
 // This function provides a Promise API to the callback-based-api of getCurrentPosition
 function getPosition() {
     console.log('Getting Pos')
@@ -25,7 +46,10 @@ function getPosition() {
 
 function onAddMarker() {
     console.log('Adding a marker')
-    mapService.addMarker({ lat: 32.0749831, lng: 34.9120554 })
+    mapService.addMarker({ lat: 32.0749831, lng: 34.9120554 }) // TODO: add a promise that you recieve from the service
+        .then(() => {
+            console.log('TODO')
+        })
 }
 
 function onGetLocs() {
