@@ -4,6 +4,7 @@ export const storageService = {
     put,    // Update
     remove, // Delete
     query,  // List 
+    _makeId
 }
 
 function query(entityType, delay = 500) {

@@ -15,6 +15,34 @@ function onInit() {
         .catch(() => console.log('Error: cannot init map'))
 }
 
+function renderLocationsTable(locs) {
+    let strHTML = `<table><tr>
+        <th>Name</th>
+        <th>Lat</th>
+        <th>Lng</th>
+    </tr>`
+     strHTML += locs.map((loc)=>{
+   return ` <tr>
+        <td>
+        ${loc.name}
+        </td>
+        <td>
+        ${loc.lat}
+        </td>
+        <td>
+        ${loc.lng}
+        </td>
+        <td>
+        <button class="btn-go">Go</button>
+        </td>
+    </tr>`
+}).join('')
+strHTML += `</table>`
+
+
+    const elLocationTable = document.querySelector('.locations-table')
+    elLocationTable.innerHTML = strHTML
+}
 // This function provides a Promise API to the callback-based-api of getCurrentPosition
 function getPosition() {
     console.log('Getting Pos')
@@ -25,20 +53,26 @@ function getPosition() {
 
 function onAddMarker() {
     console.log('Adding a marker')
-    mapService.addMarker({ lat: 32.0749831, lng: 34.9120554 })
+    mapService.addMarker({ lat: 32.0749831, lng: 34.9120554 }) // TODO: add a promise that you recieve from the service
+        .then(() => {
+            console.log('TODO')
+        })
 }
-
 function onGetLocs() {
     locService.getLocs()
         .then(locs => {
+            renderLocationsTable(locs)
             console.log('Locations:', locs)
-            document.querySelector('.locs').innerText = JSON.stringify(locs, null, 2)
+            // document.querySelector('.locs').innerText = JSON.stringify(locs, null, 2)
         })
 }
+
+onGetLocs()
 
 function onGetUserPos() {
     getPosition()
         .then(pos => {
+
             console.log('User position is:', pos.coords)
             document.querySelector('.user-pos').innerText =
                 `Latitude: ${pos.coords.latitude} - Longitude: ${pos.coords.longitude}`
