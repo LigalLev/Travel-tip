@@ -6,7 +6,6 @@ window.onAddMarker = onAddMarker
 window.onPanTo = onPanTo
 window.onGetLocs = onGetLocs
 window.onGetUserPos = onGetUserPos
-window.onGoBtn = onGoBtn
 window.onDeleteBtn = onDeleteBtn
 
 function onInit() {
@@ -35,10 +34,10 @@ function renderLocationsTable(locs) {
         ${loc.lng}
         </td>
         <td>
-        <button class="btn btn-go" onclick="onGoBtn( ${loc.lat}, ${loc.lng})">Go</button>
+        <button class="btn btn-go" onclick="onPanTo(${loc.lat}, ${loc.lng})">Go</button>
         </td>
         <td>
-        <button class="btn btn-go" onclick="onGoBtn(  ${loc.lat}, ${loc.lng})">delet</button>
+        <button class="btn btn-go" onclick="onDeleteBtn('${loc.id}')">delete</button>
         </td>
     </tr>`
     }).join('')
@@ -58,10 +57,8 @@ function getPosition() {
 
 function onAddMarker() {
     console.log('Adding a marker')
-    mapService.addMarker({ lat: 32.0749831, lng: 34.9120554 }) // TODO: add a promise that you recieve from the service
-        .then(() => {
-            console.log('TODO')
-        })
+    mapService.addMarker({ lat: 32.0749831, lng: 34.9120554 }) 
+      
 }
 
 function onGetLocs() {
@@ -72,14 +69,16 @@ function onGetLocs() {
             // document.querySelector('.locs').innerText = JSON.stringify(locs, null, 2)
         })
 }
-function onGoBtn(lat, lng) {
-    mapService.panTo(lat,lng)
 
-}
 
 function onDeleteBtn(locId){
     locService.removeLoc(locId)
+    .then (loc =>{
+        onGetLocs()
+    })
+    
 }
+
 function onGetUserPos() {
     getPosition()
         .then(pos => {
@@ -92,7 +91,10 @@ function onGetUserPos() {
             console.log('err!!!', err)
         })
 }
-function onPanTo() {
+
+
+function onPanTo(lat, lng) {
+    mapService.panTo(lat, lng)
     console.log('Panning the Map')
-    mapService.panTo(35.6895, 139.6917)
+    // mapService.panTo(35.6895, 139.6917)
 }

@@ -5,6 +5,7 @@ export const locService = {
     removeLoc, 
     save
 }
+let gLoc
 
 const LOC_KEY = 'locDB'
 _creatLocations()

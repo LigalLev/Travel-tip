@@ -30,7 +30,7 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
 
 
 function addMarker(loc) {
-    var marker = new google.maps.Marker({ ///TO DO: add promise and res, and send it to the controller
+    var marker = new google.maps.Marker({
         position: loc,
         map: gMap,
         title: 'Hello World!'
@@ -39,14 +39,14 @@ function addMarker(loc) {
 }
 
 function panTo(lat, lng) {
-    var laLatLng = new google.maps.LatLng(lat, lng) // TODO: find the way to get the lat and lang from the object// 
+    var laLatLng = new google.maps.LatLng(lat, lng) 
     gMap.panTo(laLatLng)
 }
 
 
 function _connectGoogleApi() {
     if (window.google) return Promise.resolve()
-    const API_KEY = 'AIzaSyAbtVm-BN8wnSZ_cgvL_R0mRxeHKaH69Og' //TODO: Enter your API Key
+    const API_KEY = 'AIzaSyAbtVm-BN8wnSZ_cgvL_R0mRxeHKaH69Og' 
     var elGoogleApi = document.createElement('script')
     elGoogleApi.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}`
     elGoogleApi.async = true
