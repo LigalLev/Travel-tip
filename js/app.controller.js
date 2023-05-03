@@ -6,6 +6,8 @@ window.onAddMarker = onAddMarker
 window.onPanTo = onPanTo
 window.onGetLocs = onGetLocs
 window.onGetUserPos = onGetUserPos
+window.onGoBtn = onGoBtn
+window.onDeleteBtn = onDeleteBtn
 
 function onInit() {
     mapService.initMap()
@@ -22,8 +24,8 @@ function renderLocationsTable(locs) {
         <th>Lng</th>
 
     </tr>`
-     strHTML += locs.map((loc)=>{
-   return ` <tr>
+    strHTML += locs.map((loc) => {
+        return ` <tr>
         <td>
         ${loc.name}
         </td>
@@ -34,11 +36,14 @@ function renderLocationsTable(locs) {
         ${loc.lng}
         </td>
         <td>
-        <button class="btn-go">Go</button>
+        <button class="btn-go" onclick="onGoBtn(  ${loc.lat}, ${loc.lng})">Go</button>
+        </td>
+        <td>
+        <button class="btn-go" onclick="onGoBtn(  ${loc.lat}, ${loc.lng})">delet</button>
         </td>
     </tr>`
-}).join('')
-strHTML += `</table>`
+    }).join('')
+    strHTML += `</table>`
 
 
     const elLocationTable = document.querySelector('.locations-table')
@@ -59,6 +64,7 @@ function onAddMarker() {
             console.log('TODO')
         })
 }
+
 function onGetLocs() {
     locService.getLocs()
         .then(locs => {
@@ -67,9 +73,14 @@ function onGetLocs() {
             // document.querySelector('.locs').innerText = JSON.stringify(locs, null, 2)
         })
 }
+function onGoBtn(lat, lng) {
+    mapService.panTo(lat,lng)
 
-onGetLocs()
+}
 
+function onDeleteBtn(locId){
+    locService.removeLoc(locId)
+}
 function onGetUserPos() {
     getPosition()
         .then(pos => {

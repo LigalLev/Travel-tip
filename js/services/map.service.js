@@ -41,11 +41,8 @@ function addMarker(loc) {
 
 function panTo(lat, lng) {
     var laLatLng = new google.maps.LatLng(lat, lng) // TODO: find the way to get the lat and lang from the object// 
-    
     gMap.panTo(laLatLng)
 }
-
-
 
 
 function _connectGoogleApi() {

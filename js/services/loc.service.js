@@ -1,7 +1,9 @@
 import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
 export const locService = {
-    getLocs
+    getLocs,
+    removeLoc, 
+    save
 }
 
 const LOC_KEY = 'locDB'
