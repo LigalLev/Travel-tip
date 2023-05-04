@@ -7,6 +7,7 @@ window.onPanTo = onPanTo
 window.onGetLocs = onGetLocs
 window.onGetUserPos = onGetUserPos
 window.onDeleteBtn = onDeleteBtn
+window.onGoBtn = onGoBtn
 
 function onInit() {
     mapService.initMap()
@@ -34,7 +35,7 @@ function renderLocationsTable(locs) {
         ${loc.lng}
         </td>
         <td>
-        <button class="btn btn-go" onclick="onPanTo(${loc.lat}, ${loc.lng})">Go</button>
+        <button class="btn btn-go" onclick="onGoBtn(${loc.lat}, ${loc.lng})">Go</button>
         </td>
         <td>
         <button class="btn btn-go" onclick="onDeleteBtn('${loc.id}')">delete</button>
@@ -94,6 +95,11 @@ function onGetUserPos() {
 
 
 function onPanTo(lat, lng) {
+    mapService.panTo(lat, lng)
+    console.log('Panning the Map')
+    // mapService.panTo(35.6895, 139.6917)
+}
+function onGoBtn(lat, lng) {
     mapService.panTo(lat, lng)
     console.log('Panning the Map')
     // mapService.panTo(35.6895, 139.6917)
